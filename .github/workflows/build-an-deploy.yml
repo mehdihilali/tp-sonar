@@ -51,8 +51,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
-          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=tp-sonar -Dsonar.projectName='tp-sonar'
+           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=tp-sonar -Dsonar.projectName='tp-sonar'
+
         shell: cmd
+
         # Build Docker image
       - name: Build Docker image
         run: |
