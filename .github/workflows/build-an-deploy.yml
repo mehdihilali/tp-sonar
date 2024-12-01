@@ -45,15 +45,14 @@ jobs:
         #          echo "MAVEN_HOME=$HOME/maven" >> $GITHUB_ENV
         #          echo "$HOME/maven/bin" >> $GITHUB_PATH
 
-        # Build and SonarQube analysis
+        # Build and SonarQube analysis | mvn -B verify sonar:sonar -Dsonar.project.settings=./sonar-project.properties
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
-          mvn -B verify sonar:sonar -Dsonar.project.settings=./sonar-project.properties
+          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=tp-sonar -Dsonar.projectName='tp-sonar'
         shell: cmd
-
         # Build Docker image
       - name: Build Docker image
         run: |
